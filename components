@@ -1,0 +1,18 @@
+RASPBERRY PI
+TEMPERATURE AND HUMIDITY SENSOR DHT22
+LCD 1602
+JUMPER WIRES
+BREADBOARD
+10K RESISTER
+DHT22 got 4 pins
+Pin 1 is VCC (Power Supply)
+Pin 2 is DATA (The data signal)
+Pin 3 is NULL (Do not connect)
+Pin 4 is GND (Ground)
+Place a 10k resistor between Pin 1 and Pin 2 of the DHT22
+Wire Pin 1 of the DHT22 to Physical Pin 1 (3v3) on the Pi
+Wire Pin 2 of the DHT22 to Physical Pin 7 (GPIO4) on the Pi
+Wire Pin 4 of the DHT22 to Physical Pin 6 (GND) on the Pi
+Furthermore, using breadboard will make it convenient for wiring the components using jumper wires (male-to-female). 
+Additionally you can make a machine which can also give you other measurement including temperature and humidity value 
+for example pressure, oxygen level etc you just need different sensors including pressure sensor, etc and their library which can be find from google.  
