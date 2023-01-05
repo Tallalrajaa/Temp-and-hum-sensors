@@ -1,0 +1,47 @@
+# This is a sample Python script.
+
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+#using pip, we will go ahead and install Adafruit’s DHT library to the Raspberry Pi.
+
+sudo pip3 install --install-option="--force-pi" Adafruit_DHT
+
+#puting library to use and utilizing it within a python script to talk with the DHT22 sensor.
+#make a Python script
+nano ~/humidity.py
+# We utilize the “os” library so we can check if our CSV file exists before we try to write to it
+import os
+#We use the “time” library so that we can timestamp each new row with the current date and time.
+import time
+
+#imports the “Adafruit_DHT” library
+import Adafruit_DHT
+#define a constant for the sensor that we want to utilize for the DHT Library
+DHT_SENSOR = Adafruit_DHT.DHT22
+#store the number of the GPIO pin that the DHT22 is plugged into on the Raspberry Pi.
+DHT_PIN = 4
+#We open up a handle to our “/home/pi/humidity.csv” file with the “a+” tag applied
+#The a+ tag means that any data written to the file will be appended to the end of it.
+#we use the “os” library to see if we have ever written to this file before.
+try:
+    f = open('/home/pi/humidity.csv', 'a+')
+    if os.stat('/home/pi/humidity.csv').st_size == 0:
+            f.write('Date,Time,Temperature,Humidity\r\n')
+except:
+    pass
+
+# we start up an infinite loop by using the “while TRUE:". This loop will continually run until a user kills the Python script.
+#At the start of every loop, we utilize the Adafruit DHT library to retrieve both the humidity and temperature from the DHT22 sensor, specifying both our DHT_SENSOR and DHT_PIN constant.
+while True:
+    humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+#we check to ensure that the DHT library returned data that is useful to us.if it dont return anything tell the user that we failed to retrieve data from our sensor.
+#include both the current date, current time, our formatted temperature and humidity.
+#At the end of the loop, we sleep the script for 30 seconds(you can modify it)
+
+    if humidity is not None and temperature is not None:
+        f.write('{0},{1},{2:0.1f}*C,{3:0.1f}%\r\n'.format(time.strftime('%m/%d/%y'), time.strftime('%H:%M'), temperature, humidity))
+    else:
+        print("Failed to retrieve data from humidity sensor")
+
+    time.sleep(30)
