@@ -1,4 +1,4 @@
-# Temperature and humumidity sensor
+# Temperature and humidity sensor
 This project is about building a temperature and humidity measuring machine using DHT22 sensor and raspberry pi
 This project is related to a small and affordable machine consisting of sensor, raspberry pi, Lcd, resistor and some other components. This machine should measure temperature and humidity of the surrounding and presents its measurements on a small Lcd connected to it. Time and date when these measurements are taken should also be shown so it can be helpful to keep data. Sensors such as Doppler Radar, gauge sensor to measure pressure, wind speed, rainfall can be used to make this machine a proper weather updating machine which can give data about different aspects of environment. Moreover, anyone can wish to work further on this project to control robots, controlling air conditioning and heating system by using this temperature sensor.
 This machine will facilitate us with atmospheric conditions 
